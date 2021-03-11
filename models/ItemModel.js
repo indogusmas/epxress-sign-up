@@ -22,6 +22,9 @@ const ItemSchema =  new Schema({
     data_added: {
         type: Date,
         default: Date.now
+    },
+    image: {
+        type:String
     }
 });
 

@@ -36,7 +36,13 @@ module.exports.getItem =  async (req, res) => {
 }
 
 module.exports.postItem = async (req,res) => {
-    const newItem = new Item(req.body);
+    const newItem = new Item({
+        title: req.body.title,
+        description: req.body.description,
+        category: req.body.category,
+        price: req.body.price,
+        image: req.file.path
+    });
     newItem.save().then(item => res.json(item));
 }
 

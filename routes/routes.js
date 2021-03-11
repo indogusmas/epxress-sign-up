@@ -15,10 +15,10 @@ router.post('/signIn',userController.login);
 
 // API FOR ITEM
 router.get('/item',itemController.getItem);
-router.post('/item',itemController.postItem);
+router.post('/item',itemController.upload,itemController.postItem);
 router.put('/item',itemController.updateItem);
 router.delete('/item',itemController.deleteItem);
-router.post('/uploadImage', itemController.upload, itemController.postImage);
+router.post('/uploadImage', itemController.postImage);
 
 
 //API FOR CART

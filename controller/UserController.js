@@ -1,4 +1,5 @@
 const User = require('../models/UserModel.js')
+const generateToken = require('../utils/generatetoken');
 
 exports.signUp =  async (req, res) => {
     try {
@@ -31,7 +32,7 @@ exports.signUp =  async (req, res) => {
         res.status(200).json({
             status: 0,
             message: "User Add Successfully",
-            data: userData
+            data: userData,
         });
 
     } catch (error) {
@@ -58,10 +59,13 @@ exports.login = async (req,res) => {
         const checkUser = await User.findOne({"$and": [{email},{password}]});
         console.log(checkUser);
         if(checkUser){
+            checkUser.token = generateToken.generateToken(1);
             res.status(200).json({
                 status:0,
                 message: "login Success",
-                data: checkUser
+                data: checkUser,
+                token: generateToken.generateToken(checkUser._id)
+                
             });
         }else{
             res.status(200).json({

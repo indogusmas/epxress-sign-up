@@ -27,6 +27,7 @@ app.listen(port, ()=> {
 
 app.use(cors());
 app.use(bodyParser.json());
-app.use(express.urlencoded({extended:true}))
+app.use(express.urlencoded({extended:true}));
+app.use('/images',express.static('./images'));
 
 app.use('/api/v1/',userRoute);

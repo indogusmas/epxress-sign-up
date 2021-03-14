@@ -6,7 +6,6 @@ exports.signUp =  async (req, res) => {
         const username = req.body.username;
         const email = req.body.email;
         const password = req.body.password;
-        console.log(req.body);
         if(!username || !email || !password ){
             res.status(200).json({
                 status:200,

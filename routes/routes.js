@@ -2,6 +2,8 @@ const express = require('express');
 
 const router = express.Router();
 
+const middleware = require('../middleware/authmiddleware');
+
 const userController = require('../controller/UserController');
 const itemController = require('../controller/ItemController');
 const cartController = require('../controller/CartController');
@@ -14,7 +16,7 @@ router.post('/signIn',userController.login);
 
 
 // API FOR ITEM
-router.get('/item',itemController.getItem);
+router.get('/item', middleware.protect,itemController.getItem);
 router.post('/item',itemController.upload,itemController.postItem);
 router.put('/item',itemController.updateItem);
 router.delete('/item',itemController.deleteItem);

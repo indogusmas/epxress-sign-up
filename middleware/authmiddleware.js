@@ -1,5 +1,6 @@
 const User = require("../models/UserModel");
 const jwt =  require('jsonwebtoken');
+const { errorHandler } = require("./errorMiddleware");
 
 const protect = async (req, res,next) => {
 
@@ -19,8 +20,10 @@ const protect = async (req, res,next) => {
       next()
     } catch (error) {
       console.error(error)
-      res.status(401)
-      throw new Error('Not authorized, token failed')
+      res.status(401).json({
+        status: 401,
+        message: 'Not authorized, no token'
+    })
     }
   }
 
